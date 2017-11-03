@@ -93,6 +93,21 @@ that's just a guess.
 One last note here: regardless of the IDE used, every submitted project must
 still be compilable with cmake and make./
 
+
+## Reflections
+
+A PID controler is used to steer the car on the track. We have three parameters to tune
+
+1. P stands for proportional coefficient that steers proportional to cross track error ( CTE)
+2. I stands for integral coefficient that corrects the sum of CTEs (for example systematic bias)
+3. D derivative coefficient that corrects overshooting off a desired trajectory.
+
+The above parameters are tuned manually one by one although the best way to do it is to run a parameter optimisation algorithm. I have set all to zero and start with increasing the Kp until the car overshoots. Then Kd is being increased until the car reaches the reference quickly and stops oscilating especially on the straight part of the path. Finally, Ki is chosen as a small value because there is no sytematic bias in the simulator. 
+
+Kp = 0.2
+Kd = 3.0
+Ki = 0.002
+
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
